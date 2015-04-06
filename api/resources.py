@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 
 from tastypie.resources import ModelResource
-from tastypie.serializers import Serializer
+from tastypie import fields
 
 from lists.models import TodoList, Todo
 
@@ -15,6 +15,8 @@ class UserResource(ModelResource):
 
 
 class TodoListResource(ModelResource):
+    creator = fields.ForeignKey(UserResource, 'creator')
+
     class Meta:
         queryset = TodoList.objects.all()
         resource_name = 'todolists'
@@ -22,6 +24,8 @@ class TodoListResource(ModelResource):
 
 
 class TodoResource(ModelResource):
+    creator = fields.ForeignKey(UserResource, 'creator')
+
     class Meta:
         queryset = Todo.objects.all()
         resource_name = 'todos'
