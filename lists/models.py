@@ -30,7 +30,7 @@ class Todo(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     finished_at = models.DateTimeField(null=True)
     is_finished = models.BooleanField(default=False)
-    creator = models.ForeignKey(User, null=True, related_name='todos')
+    creator = models.ForeignKey(User, null=True, blank=True, related_name='todos')
     todolist = models.ForeignKey(TodoList, related_name='todos')
 
     class Meta:
