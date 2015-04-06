@@ -1,14 +1,15 @@
 from django.conf.urls import url, include, patterns
 
-from rest_framework.routers import DefaultRouter
+from tastypie.api import Api
 
-from api import views
+from api import resources
 
-router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'todolists', views.TodoListViewSet)
-router.register(r'todos', views.TodoViewSet)
+
+v1_api = Api(api_name='v1')
+v1_api.register(resources.UserResource())
+v1_api.register(resources.TodoListResource())
+v1_api.register(resources.TodoResource())
 
 urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
+    url(r'^', include(v1_api.urls)),
 )
