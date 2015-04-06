@@ -5,6 +5,7 @@ from rest_framework.test import APITestCase
 
 from lists.models import TodoList
 
+
 class UserTests(APITestCase):
 
     def setUp(self):
